@@ -23,8 +23,9 @@ NAMESPACE PubControl.TapBars
         END_VAR
         VAR CONSTANT
             HOUR_IN_NS : LTIME := LTIME#3600000000ns;
+            ML_IN_L : INT := INT#1000;
         END_VAR
-        lastConsumption := Impulses * Factor;
+        lastConsumption := (Impulses * Factor)/ML_IN_L;
         consumption := consumption + lastConsumption;
 
         IF 0 < MeasureTime < WatchDogDiffTime THEN
