@@ -10,12 +10,22 @@ variables:
   APAX_BUILD_ARGS:
     - "--debug" # Generate debug information for target "1500"
 files:
-  - bin
+  - 'doc'
+  - 'src'
+  - 'snippets'
 devDependencies:
   "@ax/sdk": 2311.0.1
 registries:
   '@simatic-ax': 'https://npm.pkg.github.com/'
+  '@rc-de-tc-ax': https://code.siemens.com/api/v4/projects/346463/packages/npm/
+
 installStrategy: strict
 apaxVersion: 3.0.0
 dependencies:
   "@simatic-ax/snippetscollection": ^0.1.3
+
+scripts:
+  pubPack:
+    - apax build
+    - apax pack
+    - apax publish --package *.tgz --registry https://code.siemens.com/api/v4/projects/346463/packages/npm/
