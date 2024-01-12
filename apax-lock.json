@@ -1,11 +1,11 @@
 {
   "name": "pub-control-lib",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "lockFileVersion": "2",
   "installStrategy": "strict",
   "root": {
     "name": "pub-control-lib",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "devDependencies": {
       "@ax/sdk": "2311.0.1"
     }

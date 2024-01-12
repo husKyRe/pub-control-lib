@@ -1,9 +1,6 @@
 NAMESPACE PubControl.Interfaces
     INTERFACE ITapBar
-        VAR PUBLIC
-            WatchDogDiffTime : LTIME;
-        END_VAR 
-
+        
         METHOD CalcImpulses
             VAR_INPUT
                 MeasureTime : LTIME;
@@ -19,10 +16,9 @@ NAMESPACE PubControl.Interfaces
         METHOD GetFlow : Real
         END_METHOD
 
-        METHOD Reset : Void
+        METHOD Reset
         END_METHOD
-            
-        END_METHOD
+
     END_INTERFACE
     
 END_NAMESPACE
