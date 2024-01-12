@@ -1,6 +1,6 @@
 .apax
 .env
 bin
-
+apax-lock.json
 obj
 testresult
