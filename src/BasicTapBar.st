@@ -11,7 +11,7 @@ NAMESPACE PubControl.TapBars
         VAR PUBLIC
             WatchDogDiffTime : LTIME;
         END_VAR 
-
+        
         METHOD PUBLIC CalcImpulses
             VAR_INPUT
                 MeasureTime : LTIME;
@@ -24,6 +24,7 @@ NAMESPACE PubControl.TapBars
             END_VAR
             lastConsumption := (Impulses * Factor)/ML_IN_L;
             consumption := consumption + lastConsumption;
+            
 
             IF (LTIME#0ns < MeasureTime AND  MeasureTime < WatchDogDiffTime) THEN
                 flow := (lastConsumption * TO_REAL(TO_LINT(MeasureTime*HOUR_IN_NS)));

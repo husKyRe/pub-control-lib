@@ -13,5 +13,9 @@ files:
   - bin
 devDependencies:
   "@ax/sdk": 2311.0.1
+registries:
+  '@simatic-ax': 'https://npm.pkg.github.com/'
 installStrategy: strict
 apaxVersion: 3.0.0
+dependencies:
+  "@simatic-ax/snippetscollection": ^0.1.3
