@@ -2,23 +2,23 @@ USING AxUnit;
 USING PubControl.TapBars;
 USING PubControl.Interfaces;
 
-NAMESPACE MyTest
+NAMESPACE PubControl.Test
 
     {TestFixture}
-    CLASS MyTestFixture
+    CLASS TestBasicTapBar
 
         VAR 
             tapBar : BasicTapBar;
         END_VAR
 
-        {Test}
+        {FixtureSetup}
         METHOD PUBLIC ResetAndConfigTapBar
             VAR_TEMP
                 result : BOOL;
             END_VAR
 
             tapBar.Reset();
-            tapBar.WatchDogDiffTime := LTIME#3600s;
+            tapBar.WatchDogDiffTime := LTIME#60s;
         
         END_METHOD
 
@@ -29,11 +29,11 @@ NAMESPACE MyTest
                 consumption : Real := REAL#0.0;
             END_VAR
             //20 ml are 1 impulse
-            tapBar.CalcImpulses(LTIME#100ms, 100, 20);
+            tapBar.CalcImpulses(LTIME#100ms, 4, 5);
             consumption := tapBar.GetConsumption();
             flow := tapBar.GetFlow();
-            Assert.Equal(actual := consumption, expected := REAL#2.0);
-            Assert.Equal(actual := flow, expected := REAL#72.000);
+            Assert.Equal(actual := consumption, expected := REAL#0.02);
+            Assert.Equal(actual := flow, expected := REAL#720.0);
         END_METHOD
     END_CLASS
 

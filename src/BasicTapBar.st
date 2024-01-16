@@ -19,15 +19,19 @@ NAMESPACE PubControl.TapBars
                 Factor : INT;
             END_VAR
             VAR CONSTANT
-                HOUR_IN_NS : LINT := LINT#3600000000;
-                ML_IN_L : INT := INT#1000;
+                HOUR_IN_NS : REAL := REAL#3.6e12;
+                ML_IN_L : REAL := REAL#1000.0;
+            END_VAR
+            VAR_TEMP
+                calculatedTime : REAL := REAL#0.0;
             END_VAR
             lastConsumption := (Impulses * Factor)/ML_IN_L;
             consumption := consumption + lastConsumption;
             
 
             IF (LTIME#0ns < MeasureTime AND  MeasureTime < WatchDogDiffTime) THEN
-                flow := (lastConsumption * TO_REAL(TO_LINT(MeasureTime*HOUR_IN_NS)));
+                calculatedTime := (TO_REAL(TO_LINT(MeasureTime)));
+                flow := lastConsumption * (HOUR_IN_NS/calculatedTime);
             END_IF;
         END_METHOD
 
