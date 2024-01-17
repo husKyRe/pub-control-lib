@@ -13,4 +13,3 @@ default:
     - 'export SCRIPTS_DIR=$(mktemp --directory)'
     - 'git clone -q --depth 1 "$SCRIPTS_REPO" "$SCRIPTS_DIR"'
     - 'bash "$SCRIPTS_DIR/ci-scripts/login-registries.sh"'
-    - 'bash "$SCRIPTS_DIR/ci-scripts/install-global-packages.sh"'
