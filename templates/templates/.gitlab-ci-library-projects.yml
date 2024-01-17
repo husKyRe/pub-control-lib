@@ -1,0 +1,48 @@
+include:
+  - local: '/templates/.gitlab-ci-apax-docker.yml'
+
+variables:
+  RESULT_DIR: 'testresult'
+
+stages:
+  - test
+  - deliver
+  - publish
+
+Testing:
+  stage: test
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/test-library-projects.sh"'
+  artifacts:
+    when: always
+    paths:
+      - '*/$RESULT_DIR/*'
+    reports:
+      junit: '$RESULT_DIR/*.junit.xml'
+      coverage_report:
+        coverage_format: cobertura
+        path: '$RESULT_DIR/*.cobertura.xml'
+    expire_in: 30 days
+
+Delivering:
+  dependencies:
+    - Testing
+  stage: deliver
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/deliver-library-projects.sh"'
+    - echo new version
+  artifacts:
+    paths:
+      - '**/*.apax.tgz'
+    expire_in: 30 days
+  only:
+    - tags
+
+Publishing:
+  dependencies:
+    - Delivering
+  stage: publish
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/publish-library-projects.sh"'
+  only:
+    - tags

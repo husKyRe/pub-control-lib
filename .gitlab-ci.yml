@@ -1,0 +1,3 @@
+include:
+  - local: '/templates/.gitlab-ci-library-projects.yml'
+

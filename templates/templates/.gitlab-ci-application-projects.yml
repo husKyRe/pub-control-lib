@@ -1,0 +1,23 @@
+include:
+  - local: '/templates/.gitlab-ci-apax-docker.yml'
+
+variables:
+  RESULT_DIR: 'testresult'
+
+stages:
+  - test
+
+Testing:
+  stage: test
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/test-application-projects.sh"'
+  artifacts:
+    when: always
+    paths:
+      - '$RESULT_DIR/*'
+    reports:
+      junit: '$RESULT_DIR/*.junit.xml'
+      coverage_report:
+        coverage_format: cobertura
+        path: '$RESULT_DIR/*.cobertura.xml'
+    expire_in: 30 days

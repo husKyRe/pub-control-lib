@@ -1,0 +1,26 @@
+include:
+  - local: '/templates/.gitlab-ci-apax-docker.yml'
+
+stages:
+  - deliver
+  - publish
+
+Delivering:
+  stage: deliver
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/deliver-binary-projects.sh"'
+  artifacts:
+    paths:
+      - '**/*.apax.tgz'
+    expire_in: 30 days
+  only:
+    - tags
+
+Publishing:
+  dependencies:
+    - Delivering
+  stage: publish
+  script:
+    - 'bash "$SCRIPTS_DIR/ci-scripts/publish-binary-projects.sh"'
+  only:
+    - tags

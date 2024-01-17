@@ -1,0 +1,4 @@
+variables:
+  HTTP_PROXY: '$CODE_PROXY'
+  HTTPS_PROXY: '$CODE_PROXY'
+  NO_PROXY: '127.0.0.1,localhost,.siemens.de,.siemens.net,code.siemens.com,cr.siemens.com' 

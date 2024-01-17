@@ -1,0 +1,16 @@
+include:
+  - local: '/templates/.gitlab-ci-proxy.yml'
+
+
+variables:
+  SCRIPTS_REPO: 'https://gitlab-ci-token:$CI_JOB_TOKEN@code.siemens.com/ax-showcase/shared-scripts.git'
+
+default:
+  image: 'cr.siemens.com/ax-showcase/playground/juergenseidel/ax-shared-docker:3.1.0'
+
+  timeout: 5m
+  before_script:
+    - 'export SCRIPTS_DIR=$(mktemp --directory)'
+    - 'git clone -q --depth 1 "$SCRIPTS_REPO" "$SCRIPTS_DIR"'
+    - 'bash "$SCRIPTS_DIR/ci-scripts/login-registries.sh"'
+    - 'bash "$SCRIPTS_DIR/ci-scripts/install-global-packages.sh"'
