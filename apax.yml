@@ -4,7 +4,7 @@ type: lib
 keywords:
   - library
 targets:
-  - "1500"
+  #- "1500"
   - llvm
 variables:
   APAX_BUILD_ARGS:
