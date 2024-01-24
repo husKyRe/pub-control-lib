@@ -18,4 +18,4 @@ Testing:
     - apax login --registry https://npm.pkg.github.com --password "$GITHUB_REGISTRY_PASSWORD"
     - apax install
     - apax build 
-    - apax test --debug
+    - apax test -l=debug
