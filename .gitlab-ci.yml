@@ -16,6 +16,6 @@ Testing:
   script:
     - apax login --password "$AX_REGISTRY_PASSWORD"
     - apax login --registry https://npm.pkg.github.com --password "$GITHUB_REGISTRY_PASSWORD"
-    - apax install 
+    - apax install
     - apax build 
-    - apax test
+    - apax test --debug
