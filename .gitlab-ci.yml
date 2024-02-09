@@ -1,11 +1,12 @@
 variables:
   HTTP_PROXY: '$CODE_PROXY'
   HTTPS_PROXY: '$CODE_PROXY'
-  NO_PROXY: '127.0.0.1,localhost,.siemens.de,.siemens.net,code.siemens.com,cr.siemens.com'
+  NO_PROXY: "$CODE_NO_PROXY"
+
 
 
 default:
-  image: 'cr.siemens.com/ax-showcase/playground/juergenseidel/ax-shared-docker:3.1.0'
+  image: 'cr.siemens.com/ax/base-images/build:latest'
 
 stages:
   - test
