@@ -1,4 +1,4 @@
-NAMESPACE PubControl.Interfaces
+NAMESPACE Siemens.PubControl.Interfaces
     INTERFACE ITapBar
         
         METHOD CalcImpulses

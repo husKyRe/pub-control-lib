@@ -1,6 +1,6 @@
-USING PubControl.Interfaces;
+USING Siemens.PubControl.Interfaces;
 
-NAMESPACE PubControl.TapBars
+NAMESPACE Siemens.PubControl.TapBars
     CLASS BasicTapBar IMPLEMENTS ITapBar      
         VAR PRIVATE
             consumption : REAL;

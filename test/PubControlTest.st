@@ -1,8 +1,8 @@
 USING AxUnit;
-USING PubControl.TapBars;
-USING PubControl.Interfaces;
+USING Siemens.PubControl.TapBars;
+USING Siemens.PubControl.Interfaces;
 
-NAMESPACE PubControl.Test
+NAMESPACE Siemens.PubControl.Test
 
     {TestFixture}
     CLASS TestBasicTapBar
@@ -33,6 +33,19 @@ NAMESPACE PubControl.Test
             consumption := tapBar.GetConsumption();
             flow := tapBar.GetFlow();
             Assert.Equal(actual := consumption, expected := REAL#0.02);
+            Assert.Equal(actual := flow, expected := REAL#720.0);
+        END_METHOD
+        {Test}
+        METHOD PUBLIC SecondTestMeasure100ms
+            VAR_TEMP
+                flow : Real := REAL#0.0;
+                consumption : Real := REAL#0.0;
+            END_VAR
+            //20 ml are 1 impulse
+            tapBar.CalcImpulses(LTIME#100ms, 4, 5);
+            consumption := tapBar.GetConsumption();
+            flow := tapBar.GetFlow();
+            Assert.Equal(actual := consumption, expected := REAL#0.04);
             Assert.Equal(actual := flow, expected := REAL#720.0);
         END_METHOD
     END_CLASS
