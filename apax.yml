@@ -1,5 +1,5 @@
-name: "@rc-de-tc-ax/pub-control-lib"
-version: 0.2.0
+name: "@huskyre/pub-control-lib"
+version: 0.2.4
 type: lib
 keywords:
   - library
@@ -29,6 +29,5 @@ scripts:
     - apax version $1 # set new version with arg from cli
     - apax build
     - apax pack
-    - apax publish --package *.tgz --registry
-      https://code.siemens.com/api/v4/projects/346463/packages/npm/
+    - apax publish --package *.tgz --registry https://npm.pkg.github.com
     - rm *.tgz
