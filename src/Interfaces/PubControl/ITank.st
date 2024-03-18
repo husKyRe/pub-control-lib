@@ -22,5 +22,9 @@ NAMESPACE Siemens.PubControl.Interfaces
             END_VAR 
         END_METHOD
 
+        METHOD Tanking
+ 
+        END_METHOD
+
     END_INTERFACE
 END_NAMESPACE

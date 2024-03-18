@@ -8,7 +8,7 @@ NAMESPACE Siemens.PubControl.Test
     {TestFixture}
     CLASS TestTank
         VAR
-            tank : TankWeight;
+            tank : TankTap;
         END_VAR
 
         {FixtureSetup}
@@ -16,38 +16,38 @@ NAMESPACE Siemens.PubControl.Test
             VAR_TEMP
                 result : BOOL;
             END_VAR
-            tank.Weight := 880;
             tank.SetMaxLevel(UINT#900);
+            tank.Tanking();
         END_METHOD
 
-        // {Test}
-        // METHOD PUBLIC TestLevelStatus
-        //     VAR_TEMP
-        //         status : TankStatus;
-        //         level : UINT := UINT#0;
-        //     END_VAR
-        //     status := tank.GetStatus();
-        //     level := tank.GetLevel();
-        //     Assert.Equal(actual := status, expected := TankStatus#TAPPING);
-        //     Assert.Equal(actual := level, expected := UINT#900);
-        // END_METHOD
+        {Test}
+        METHOD PUBLIC TestLevel
+            VAR_TEMP
+                status : TankStatus;
+                level : UINT := UINT#0;
+            END_VAR
+            level := tank.GetLevel();
+            status := tank.GetStatus();
+            Assert.Equal(expected := TankStatus#FULL, actual := status);
+            Assert.Equal(actual := level, expected := UINT#900);
+        END_METHOD
 
-        // {Test(weight := REAL#500.0, exceptedlevel:= UINT#511)}
-        // METHOD PUBLIC Tapping
-        //     VAR_INPUT
-        //         weight : REAL;
-        //         exceptedlevel : UINT := UINT#0;
-        //     END_VAR
-        //     VAR_TEMP
-        //         status : TankStatus;
-        //         currentlevel : UINT := UINT#0;
-        //     END_VAR
-        //     tank.Weight := weight;
-        //     status := tank.GetStatus();
-        //     currentlevel := tank.GetLevel();
-        //     Assert.Equal(actual := status, expected := TankStatus#TAPPING);
-        //     Assert.Equal(actual := currentlevel, expected := exceptedlevel);
-        // END_METHOD
+        {Test(consume := REAL#2.0, exceptedlevel:= UINT#898)}
+        METHOD PUBLIC Tapping
+            VAR_INPUT
+                consume : REAL;
+                exceptedlevel : UINT := UINT#0;
+            END_VAR
+            VAR_TEMP
+                status : TankStatus;
+                currentlevel : UINT := UINT#0;
+            END_VAR
+            tank.Consume(consume);
+            currentlevel := tank.GetLevel();
+            status := tank.GetStatus();
+            Assert.Equal(actual := status, expected := TankStatus#TAPPING);
+            Assert.Equal(actual := currentlevel, expected := exceptedlevel);
+        END_METHOD
     END_CLASS
 
 END_NAMESPACE

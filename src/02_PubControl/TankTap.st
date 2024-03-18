@@ -29,7 +29,9 @@ NAMESPACE Siemens.PubControl
 
         // TODO Test me
         METHOD PUBLIC FINAL Consume : TankStatus
+            
             VAR_INPUT
+                /// consumption in liter
                 consumption : REAL;
             END_VAR
             IF (_currentLevel - consumption) < 0 THEN
@@ -37,7 +39,7 @@ NAMESPACE Siemens.PubControl
             ELSE
                 _currentLevel := _currentLevel - consumption;
             END_IF;
-            THIS.GetStatus();
+            THIS.CheckStatus();
             Consume := _status;
         END_METHOD
 
@@ -47,6 +49,7 @@ NAMESPACE Siemens.PubControl
         END_METHOD
 
         METHOD PUBLIC GetStatus : TankStatus
+            THIS.CheckStatus();
             GetStatus := _status;
         END_METHOD
 
@@ -72,6 +75,10 @@ NAMESPACE Siemens.PubControl
             ELSE
                 _status := TankStatus#OFF;
             END_IF;
+        END_METHOD
+    
+        METHOD PUBLIC Tanking
+            _currentLevel := _maxLevel;
         END_METHOD
     END_CLASS
 
