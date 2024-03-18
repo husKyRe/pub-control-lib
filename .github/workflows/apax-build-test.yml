@@ -6,6 +6,6 @@ jobs:
     uses: simatic-ax/actions/.github/workflows/apax-build-test.yml@stable
     secrets:
       APAX_TOKEN: ${{ secrets.APAX_TOKEN }}
-      SIMATIC_AX_TOKEN: ${{ secrets.GITHUB }}
+      SIMATIC_AX_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       LOGIN_SIMATIC_AX: true
