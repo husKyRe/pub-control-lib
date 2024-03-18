@@ -1,4 +1,4 @@
-name: test-apax
+name: apax-build-test
 on:
   workflow_call:
     secrets:
