@@ -1,12 +1,11 @@
 name: "@rc-de-tc-ax/pub-control-lib"
-version: 0.0.7
+version: 0.2.0
 type: lib
 keywords:
   - library
 targets:
   - "1500"
   - plcsim
-  - llvm
 variables:
   APAX_BUILD_ARGS:
     - "--debug" # Generate debug information for target "1500"
