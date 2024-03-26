@@ -17,7 +17,7 @@ NAMESPACE Siemens.PubControl.Test
                 result : BOOL;
             END_VAR
             tank.SetMaxLevel(UINT#900);
-            tank.Tanking();
+            
         END_METHOD
 
         {Test}
@@ -26,9 +26,10 @@ NAMESPACE Siemens.PubControl.Test
                 status : TankStatus;
                 level : UINT := UINT#0;
             END_VAR
+            tank.Tanking();
             level := tank.GetLevel();
             status := tank.GetStatus();
-            Assert.Equal(expected := TankStatus#FULL, actual := status);
+            Assert.Equal(expected := TankStatus#ACTIVE, actual := status);
             Assert.Equal(actual := level, expected := UINT#900);
         END_METHOD
 
@@ -42,10 +43,11 @@ NAMESPACE Siemens.PubControl.Test
                 status : TankStatus;
                 currentlevel : UINT := UINT#0;
             END_VAR
+            tank.Tanking();
             tank.Consume(consume);
             currentlevel := tank.GetLevel();
             status := tank.GetStatus();
-            Assert.Equal(actual := status, expected := TankStatus#TAPPING);
+            Assert.Equal(actual := status, expected := TankStatus#TAPPED);
             Assert.Equal(actual := currentlevel, expected := exceptedlevel);
         END_METHOD
     END_CLASS

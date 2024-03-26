@@ -1,5 +1,7 @@
+USING Siemens.PubControl.Types;
 USING Siemens.PubControl.Interfaces;
 USING Siemens.PubControl.Types;
+
 
 NAMESPACE Siemens.PubControl
     // TODO HMI Interface
@@ -9,8 +11,10 @@ NAMESPACE Siemens.PubControl
         END_VAR
         VAR PROTECTED
             _maxLevel : UINT;
-            _status : TankStatus := TankStatus#OFF;
+            _status : TankStatus := TankStatus#ACTIVE;
             _currentLevel : REAL;
+            _inTanking : BOOL;
+            _inService : BOOL;
         END_VAR
 
         METHOD PUBLIC SetMaxLevel : INT
@@ -66,20 +70,25 @@ NAMESPACE Siemens.PubControl
                 level : UINT;
             END_VAR
             level := TO_UINT(_currentLevel);
-            IF _maxLevel = level THEN
-                _status := TankStatus#FULL;
-            ELSIF UINT#0 < level AND level < _maxLevel THEN
-                _status := TankStatus#TAPPING;
+            IF UINT#0 < level AND level < _maxLevel THEN
+                _status := TankStatus#TAPPED;
             ELSIF level <= UINT#0  THEN
-                _status := TankStatus#EMPTY;
+            _status := TankStatus#EMPTY;
+            ELSIF _inTanking THEN
+                _status := TankStatus#TANKING;
+            ELSIF _inService THEN
+                _status := TankStatus#SERVICE;
             ELSE
-                _status := TankStatus#OFF;
+                _status := TankStatus#ACTIVE;
             END_IF;
         END_METHOD
     
         METHOD PUBLIC Tanking
+            _inTanking := TRUE;
             _currentLevel := _maxLevel;
+            _inTanking := FALSE;
         END_METHOD
+
     END_CLASS
 
 END_NAMESPACE
