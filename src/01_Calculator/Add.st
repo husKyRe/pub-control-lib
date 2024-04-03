@@ -1,5 +1,5 @@
 NAMESPACE Siemens.Calculator
-    {axcode:docs-v0:@rc-de-tc-ax/pub-control-lib:Calc.md}
+    {axcode:docs-v0:@huskyre/pub-control-lib:Calc.md}
     CLASS Add EXTENDS BaseCalc
         VAR
             result : REAL;

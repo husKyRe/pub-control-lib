@@ -1,5 +1,5 @@
 NAMESPACE Siemens.Calculator
-    {axcode:docs-v0:demo-tiax-lib:Calc.md}
+    {axcode:docs-v0:@huskyre/pub-control-lib:Calc.md}
     CLASS ABSTRACT BaseCalc
         VAR 
             overflow : bool;
