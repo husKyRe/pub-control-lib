@@ -16,6 +16,7 @@ NAMESPACE Siemens.PubControl.Test
             VAR_TEMP
                 result : BOOL;
             END_VAR
+            
             tank.SetMaxLevel(UINT#900);
             
         END_METHOD

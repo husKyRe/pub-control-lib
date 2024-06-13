@@ -8,7 +8,7 @@ NAMESPACE Siemens.Calculator.Test
 
         VAR PROTECTED
             instAddCalc : Add;
-            instSubCalc : Sub;                
+            instSubCalc : Sub;            
             values : Array[0..63] of REAL; 
         END_VAR
 

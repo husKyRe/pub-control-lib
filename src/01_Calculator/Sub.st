@@ -12,6 +12,7 @@ NAMESPACE Siemens.Calculator
             Calc := operand1 - operand2;
         END_METHOD
     
+    /// Das ist mein Method
     METHOD PUBLIC OVERRIDE ArrayCalc : REAL
         VAR_INPUT
             ArrayOperand : ARRAY [0..63] OF REAL;
